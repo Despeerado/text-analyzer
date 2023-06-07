@@ -1,6 +1,7 @@
 # text-analysis.py: první projekt do Engeto Online Python Akademie
 
 # author: Dominik Beran
+# discord: Dominik B. / Despeerado#8409
 # email: d.beran27@gmail.com
 
 # Vyžádá si od uživatele přihlašovací jméno a heslo,
@@ -76,7 +77,6 @@ if users.get(user_name) == user_password:
                 elif word.isdigit():
                     digit_count += 1
                     numeric.append(word)
-            print(numeric)
             print("There are", title_case, "titlecase words.")
             print("There are", upper_case, "uppercase words.")
             print("There are", lower_case, "lowercase words.")
@@ -105,12 +105,14 @@ if users.get(user_name) == user_password:
                 if word_occurence[occurence] in top_3_values:
                     results.append((word_occurence[occurence], occurence))
 
-            # separator = "+--+----------+--+"
+            # separator
             for index, tupl in enumerate(sorted(results, reverse=True), 1):
                 print(
                     f"{index}| {tupl[1]:^10} {tupl[0]*'*'} |{tupl[0]}", sep="\n")
 
         else:
             print("Text does not exist, terminating the program..")
+    else:
+        print("You did not enter the number, terminating the program..")
 else:
     print("unregistered user, terminating the program..")
