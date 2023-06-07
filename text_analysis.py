@@ -2,7 +2,6 @@
 
 # author: Dominik Beran
 # email: d.beran27@gmail.com
-# import ...
 
 # Vyžádá si od uživatele přihlašovací jméno a heslo,
 # zjistí, jestli zadané údaje odpovídají někomu z registrovaných uživatelů,
@@ -26,48 +25,17 @@
 # Program zobrazí jednoduchý sloupcový graf,
 # který bude reprezentovat četnost různých délek slov v textu.
 
+from task_template import TEXTS
 # users
-
-# TEXTS = [
-#     """
-# Situated about 10 miles west of Kemmerer,
-# Fossil Butte is a ruggedly impressive
-# topographic feature that rises sharply
-# some 1000 feet above Twin Creek Valley
-# to an elevation of more than 7500 feet
-# above sea level. The butte is located just
-# north of US 30N and the Union Pacific Railroad,
-# which traverse the valley. """,
-#     """At the base of Fossil Butte are the bright
-# red, purple, yellow and gray beds of the Wasatch
-# Formation. Eroded portions of these horizontal
-# beds slope gradually upward from the valley floor
-# and steepen abruptly. Overlying them and extending
-# to the top of the butte are the much steeper
-# buff-to-white beds of the Green River Formation,
-# which are about 300 feet thick.""",
-#     """The monument contains 8198 acres and protects
-# a portion of the largest deposit of freshwater fish
-# fossils in the world. The richest fossil fish deposits
-# are found in multiple limestone layers, which lie some
-# 100 feet below the top of the butte. The fossils
-# represent several varieties of perch, as well as
-# other freshwater genera and herring similar to those
-# in modern oceans. Other fish such as paddlefish,
-# garpike and stingray are also present.""",
-# ]
-
-import task_template
 
 users = {"bob": "123", "ann": "pass123",
          "mike": "password123", "liz": "pass123"}
 
 # login
 
-# user_name = input("Login:")
-# user_password = input("password:")
-user_name = "liz"
-user_password = "pass123"
+user_name = input("Login:")
+user_password = input("password:")
+
 # login validation
 
 if users.get(user_name) == user_password:
@@ -81,7 +49,8 @@ if text.isdigit():
     if 1 <= index <= 3:
         element = TEXTS[index - 1]
 
-        # odstraneni tecek, vykricniku, otazniku a dvojtetek
+        # removing punctuation
+
         punctuation_marks = [".", ",", "!", "?", ":"]
 
         for mark in punctuation_marks:
@@ -90,14 +59,12 @@ if text.isdigit():
         word_count = len(words)
         print("There are", word_count, "words in the selected text.")
 
-        # title_case
         title_case = 0
         upper_case = 0
         lower_case = 0
         digit_count = 0
         numeric = 0
 
-        # novy slovnik pro cetnost a slovo
         words_length = {}
 
         for word in words:
@@ -129,22 +96,16 @@ if text.isdigit():
         values_list = list(values)
         sorted_values = sorted(values_list, reverse=True)
         top_3_values = sorted_values[:3]
-        # print(top_3_values)
-        # print(sorted(word_occurence, key=word_occurence.get, reverse=True)[:3])
 
         results = list()
 
         for occurence in word_occurence:
             if word_occurence[occurence] in top_3_values:
                 results.append((word_occurence[occurence], occurence))
-                # print(occurence)
 
         # separator = "+--+----------+--+"
         for index, tupl in enumerate(sorted(results, reverse=True), 1):
-            # print(oddelovac)
-            # print(f"| {index}. | {tupl[1]:^10} | {tupl[0]}x|", sep="\n")
             print(f"{index}| {tupl[1]:^10} {tupl[0]*'*'} |{tupl[0]}", sep="\n")
-            # print(oddelovac)
 
     else:
         print("Text does not exist, terminating the program..")
@@ -152,8 +113,3 @@ if text.isdigit():
 
 else:
     print("unregistered user, terminating the program..")
-
-
-# print(TEXTS[2])
-
-# sloupcovy graf
