@@ -41,75 +41,73 @@ user_password = input("password:")
 if users.get(user_name) == user_password:
     print("Welcome to the app,", user_name)
     print("We have 3 texts to be analyzed.")
-
     text = input("Enter a number btw. 1 and 3 to select:")
 
-if text.isdigit():
-    index = int(text)
-    if 1 <= index <= 3:
-        element = TEXTS[index - 1]
+    if text.isdigit():
+        index = int(text)
+        if 1 <= index <= 3:
+            element = TEXTS[index - 1]
 
-        # removing punctuation
+            # removing punctuation
 
-        punctuation_marks = [".", ",", "!", "?", ":"]
+            punctuation_marks = [".", ",", "!", "?", ":"]
 
-        for mark in punctuation_marks:
-            element = element.replace(mark, "")
-        words = element.split()
-        word_count = len(words)
-        print("There are", word_count, "words in the selected text.")
+            for mark in punctuation_marks:
+                element = element.replace(mark, "")
+            words = element.split()
+            word_count = len(words)
+            print("There are", word_count, "words in the selected text.")
 
-        title_case = 0
-        upper_case = 0
-        lower_case = 0
-        digit_count = 0
-        numeric = 0
+            title_case = 0
+            upper_case = 0
+            lower_case = 0
+            digit_count = 0
+            numeric = 0
 
-        words_length = {}
+            words_length = {}
 
-        for word in words:
-            if word.istitle():
-                title_case += 1
-            elif word.isupper():
-                upper_case += 1
-            elif word.islower():
-                lower_case += 1
-            elif word.isdigit():
-                digit_count += 1
-            elif word.isnumeric():
-                numeric += 1
+            for word in words:
+                if word.istitle():
+                    title_case += 1
+                elif word.isupper():
+                    upper_case += 1
+                elif word.islower():
+                    lower_case += 1
+                elif word.isdigit():
+                    digit_count += 1
+                elif word.isnumeric():
+                    numeric += 1
 
-        print("There are", title_case, "titlecase words.")
-        print("There are", upper_case, "uppercase words.")
-        print("There are", lower_case, "lowercase words.")
-        print("There are", digit_count, "numeric strings.")
-        print("The sum of all the numbers is", numeric)
+            print("There are", title_case, "titlecase words.")
+            print("There are", upper_case, "uppercase words.")
+            print("There are", lower_case, "lowercase words.")
+            print("There are", digit_count, "numeric strings.")
+            print("The sum of all the numbers is", numeric)
 
-        word_occurence = dict()
-        for word in words:
-            if word not in word_occurence:
-                word_occurence[word] = 1
-            else:
-                word_occurence[word] = word_occurence[word] + 1
+            word_occurence = dict()
+            for word in words:
+                if word not in word_occurence:
+                    word_occurence[word] = 1
+                else:
+                    word_occurence[word] = word_occurence[word] + 1
 
-        values = word_occurence.values()
-        values_list = list(values)
-        sorted_values = sorted(values_list, reverse=True)
-        top_3_values = sorted_values[:3]
+            values = word_occurence.values()
+            values_list = list(values)
+            sorted_values = sorted(values_list, reverse=True)
+            top_3_values = sorted_values[:3]
 
-        results = list()
+            results = list()
 
-        for occurence in word_occurence:
-            if word_occurence[occurence] in top_3_values:
-                results.append((word_occurence[occurence], occurence))
+            for occurence in word_occurence:
+                if word_occurence[occurence] in top_3_values:
+                    results.append((word_occurence[occurence], occurence))
 
-        # separator = "+--+----------+--+"
-        for index, tupl in enumerate(sorted(results, reverse=True), 1):
-            print(f"{index}| {tupl[1]:^10} {tupl[0]*'*'} |{tupl[0]}", sep="\n")
+            # separator = "+--+----------+--+"
+            for index, tupl in enumerate(sorted(results, reverse=True), 1):
+                print(
+                    f"{index}| {tupl[1]:^10} {tupl[0]*'*'} |{tupl[0]}", sep="\n")
 
-    else:
-        print("Text does not exist, terminating the program..")
-
-
+        else:
+            print("Text does not exist, terminating the program..")
 else:
     print("unregistered user, terminating the program..")
