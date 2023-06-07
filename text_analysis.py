@@ -62,7 +62,7 @@ if users.get(user_name) == user_password:
             upper_case = 0
             lower_case = 0
             digit_count = 0
-            numeric = 0
+            numeric = list()
 
             words_length = {}
 
@@ -75,14 +75,17 @@ if users.get(user_name) == user_password:
                     lower_case += 1
                 elif word.isdigit():
                     digit_count += 1
-                elif word.isnumeric():
-                    numeric += 1
-
+                    numeric.append(word)
+            print(numeric)
             print("There are", title_case, "titlecase words.")
             print("There are", upper_case, "uppercase words.")
             print("There are", lower_case, "lowercase words.")
             print("There are", digit_count, "numeric strings.")
-            print("The sum of all the numbers is", numeric)
+
+            total_sum = 0
+            for num in numeric:
+                total_sum += int(num)
+            print("The sum of all the numbers is", total_sum)
 
             word_occurence = dict()
             for word in words:
