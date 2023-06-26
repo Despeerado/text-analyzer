@@ -87,6 +87,8 @@ if users.get(user_name) == user_password:
                 total_sum += int(num)
             print("The sum of all the numbers is", total_sum)
 
+            # pocet vyskytu
+
             word_occurence = dict()
             for word in words:
                 if word not in word_occurence:
@@ -106,6 +108,7 @@ if users.get(user_name) == user_password:
                     results.append((word_occurence[occurence], occurence))
 
             # separator
+
             for index, tupl in enumerate(sorted(results, reverse=True), 1):
                 print(
                     f"{index}| {tupl[1]:^10} {tupl[0]*'*'} |{tupl[0]}", sep="\n")
