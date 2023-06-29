@@ -89,6 +89,37 @@ if users.get(user_name) == user_password:
 
             # pocet vyskytu
 
+            # pracuji s promennou words, kde je text ocisten o interpunkcni znamenka
+            # vrati list hodnot - kazda predstavuje delku kazdeho jednotliveho slova
+
+            word_char_counts = list()
+
+            for i in words:
+                word_char_counts.append(len(i))
+
+            dictionary = {}
+
+            for z in word_char_counts:
+                if z in dictionary:
+                    dictionary[z] += 1
+                else:
+                    dictionary[z] = 1
+            print(dictionary)
+
+            for cislo, pocet in dictionary.items():
+                print(f"Číslo {cislo} se vyskytuje {pocet}x.")
+
+            # vrati list hodnot - kazda predstavuje delku slova
+            result = list()
+            for i in range(max(word_char_counts)):
+                result.append(word_char_counts.count(i))
+
+            # serazeni hodnot ve word_char_counts
+            sorted_word_char_counts = sorted(result, reverse=True)
+            print(sorted_word_char_counts)
+
+            # puvodni funkce pocitaji vyskyty, ale taky byla spatne
+
             word_occurence = dict()
             for word in words:
                 if word not in word_occurence:
