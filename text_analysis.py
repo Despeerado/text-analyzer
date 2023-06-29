@@ -104,10 +104,16 @@ if users.get(user_name) == user_password:
                     dictionary[z] += 1
                 else:
                     dictionary[z] = 1
-            print(dictionary)
 
-            for cislo, pocet in dictionary.items():
-                print(f"Číslo {cislo} se vyskytuje {pocet}x.")
+            ordered = dict(sorted(dictionary.items()))
+
+            # vytiskne tabulku
+
+            print("LEN".ljust(3), "|", "OCCURENCES".ljust(12), "|", "NR.")
+            print("-" * 25)
+
+            for key, value in ordered.items():
+                print('{:<5} {:<15} {}'.format(key, '*' * value, value))
 
             # vrati list hodnot - kazda predstavuje delku slova
             result = list()
@@ -116,7 +122,6 @@ if users.get(user_name) == user_password:
 
             # serazeni hodnot ve word_char_counts
             sorted_word_char_counts = sorted(result, reverse=True)
-            print(sorted_word_char_counts)
 
             # puvodni funkce pocitaji vyskyty, ale taky byla spatne
 
@@ -137,12 +142,6 @@ if users.get(user_name) == user_password:
             for occurence in word_occurence:
                 if word_occurence[occurence] in top_3_values:
                     results.append((word_occurence[occurence], occurence))
-
-            # separator
-
-            for index, tupl in enumerate(sorted(results, reverse=True), 1):
-                print(
-                    f"{index}| {tupl[1]:^10} {tupl[0]*'*'} |{tupl[0]}", sep="\n")
 
         else:
             print("Text does not exist, terminating the program..")
