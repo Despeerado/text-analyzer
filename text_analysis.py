@@ -115,34 +115,6 @@ if users.get(user_name) == user_password:
             for key, value in ordered.items():
                 print('{:<5} {:<15} {}'.format(key, '*' * value, value))
 
-            # vrati list hodnot - kazda predstavuje delku slova
-            result = list()
-            for i in range(max(word_char_counts)):
-                result.append(word_char_counts.count(i))
-
-            # serazeni hodnot ve word_char_counts
-            sorted_word_char_counts = sorted(result, reverse=True)
-
-            # puvodni funkce pocitaji vyskyty, ale taky byla spatne
-
-            word_occurence = dict()
-            for word in words:
-                if word not in word_occurence:
-                    word_occurence[word] = 1
-                else:
-                    word_occurence[word] = word_occurence[word] + 1
-
-            values = word_occurence.values()
-            values_list = list(values)
-            sorted_values = sorted(values_list, reverse=True)
-            top_3_values = sorted_values[:3]
-
-            results = list()
-
-            for occurence in word_occurence:
-                if word_occurence[occurence] in top_3_values:
-                    results.append((word_occurence[occurence], occurence))
-
         else:
             print("Text does not exist, terminating the program..")
     else:
